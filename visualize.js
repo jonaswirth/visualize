@@ -4,7 +4,9 @@ var timespan;
 
 GetUrlParams();
 var caloriesPerUnit = GetCaloriesPerUnit(units);
+document.getElementById("infoText1").innerHTML = "You have burned "+(calories / caloriesPerUnit) +" "+ units + " in " + timespan;
 console.log("You have burned "+(calories / caloriesPerUnit) +" "+ units + " in " + timespan );
+AddElements();
 
 function GetUrlParams(){
   var url = window.location.search;
@@ -23,6 +25,14 @@ function GetUrlParams(){
     if(tmp[0] === "timespan"){
       timespan = tmp[1];
     }
+  }
+}
+function AddElements(){
+  for(var i = 0;i<Math.round(calories/caloriesPerUnit);i++){
+    var img = document.createElement('img');
+    img.src = "http://blogs-images.forbes.com/thumbnails/blog_1217/pt_1217_1204_o.jpg?t=1342459978&width=128&height=128";
+    var src = document.getElementById("insert-here");
+    src.appendChild(img);
   }
 }
 
