@@ -4,7 +4,7 @@ var timespan;
 
 GetUrlParams();
 var caloriesPerUnit = GetCaloriesPerUnit(units);
-document.getElementById("infoText1").innerHTML = "You have burned "+(calories / caloriesPerUnit) +" "+ units + " in " + timespan;
+document.getElementById("infoText1").innerHTML = decodeURI("You have burned "+(calories / caloriesPerUnit) +" "+ units +" "+ timespan);
 console.log("You have burned "+(calories / caloriesPerUnit) +" "+ units + " in " + timespan );
 AddElements();
 
