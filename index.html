@@ -5,9 +5,20 @@
   </head>
   <body>
     <h1>Visualize how many calories you have burned</h1>
-    <p id="infoText1"></p>
-    <div id="insert-here"></div>
+      <form method="get" action="visualize.html?">
+        Energy: <input type="number" name="calories"/>
+        <select name="unit">
+          <option value="1">kCal</option>
+          <option value="2">KJoule</option>
+        </select><br/>
+        Timespan: <input type="text" name="timespan" placeholder="last year"/>
+        <br/>
+        Visualize in: <select name="visualizeIn">
+          <option value="0">Bigmac</option>
+        </select>
+        <br/>
+        <input type="submit" value="Visualize"/>
+      </form>
     <p>footer</p>
-    <script type="text/javascript" src="visualize.js"></script>
   </body>
 </html>

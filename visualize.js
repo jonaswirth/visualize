@@ -1,11 +1,21 @@
 var calories;
-var units;
+var unit;
 var timespan;
+var visualizeIn;
+
+var Units = [
+  {name:"bigmacs",kcal:"210",kjoule:"879"},
+  {name:"",kcal:"",kjoule:""}
+]
 
 GetUrlParams();
-var caloriesPerUnit = GetCaloriesPerUnit(units);
-document.getElementById("infoText1").innerHTML = decodeURI("You have burned "+(calories / caloriesPerUnit) +" "+ units +" "+ timespan);
-console.log("You have burned "+(calories / caloriesPerUnit) +" "+ units + " in " + timespan );
+var burnedUnits;
+if(unit==1){burnedUnits = calories / visualizeIn.kcal};
+if(unit==2){burnedUnits = calories / visualizeIn.kjoule};
+var info = "You have burned about " + Math.round(burnedUnits) + " " + visualizeIn.name + " " + timespan.replace("+"," ");
+
+document.getElementById("infoText1").innerHTML = decodeURI(info);
+
 AddElements();
 
 function GetUrlParams(){
@@ -19,8 +29,11 @@ function GetUrlParams(){
     if(tmp[0] === "calories"){
       calories = tmp[1];
     }
-    if(tmp[0] === "units"){
-      units = tmp[1];
+    if(tmp[0] === "visualizeIn"){
+      visualizeIn = Units[parseInt(tmp[1])];
+    }
+    if(tmp[0] === "unit"){
+      unit = tmp[1];
     }
     if(tmp[0] === "timespan"){
       timespan = tmp[1];
@@ -28,7 +41,7 @@ function GetUrlParams(){
   }
 }
 function AddElements(){
-  for(var i = 0;i<Math.round(calories/caloriesPerUnit);i++){
+  for(var i = 0;i<Math.round(burnedUnits);i++){
     var img = document.createElement('img');
     img.src = "http://blogs-images.forbes.com/thumbnails/blog_1217/pt_1217_1204_o.jpg?t=1342459978&width=128&height=128";
     var src = document.getElementById("insert-here");
@@ -38,14 +51,25 @@ function AddElements(){
 
 function GetCaloriesPerUnit(unit){
   switch (unit) {
-    case "bigmac":
+    case 1:
         return 400;
       break;
     default:
 
   }
 }
+function GetName(index){
+  switch(parseInt(index)){
+  case 1:
+    return "bigmac";
+  break;
+}}
 
-console.log(calories);
-console.log(units);
-console.log(timespan);
+/*
+console.log("calories: " + calories);
+console.log("unit: " + unit);
+console.log("timespan: " + timespan);
+console.log("vis in: " + unit.name);
+console.log(GetName("1"));
+console.log(Units);
+*/
